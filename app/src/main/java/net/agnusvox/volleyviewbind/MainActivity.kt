@@ -9,11 +9,13 @@ import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-
 import kotlinx.android.synthetic.main.activity_main.*
+import net.agnusvox.volleyviewbind.Constants
 
 class MainActivity : AppCompatActivity() {
+    //TODO: Make myVolley in application context so it does not trigger when screen rotates.
+    //See: https://developer.android.com/training/volley/requestqueue
+    private val myVolley = VolleySingleton(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.myText)
 // ...
 
-// Instantiate the RequestQueue.
-        val queue = Volley.newRequestQueue(this)
-        val url = "https://ly729.airtime.pro/api/live-info/?callback"
+// Instantiate the RequestQueue. (only when "simple" method)
+//        val queue = Volley.newRequestQueue(this)
+        val url = Constants.liveInfoUrl
 
 // Request a string response from the provided URL.
         val stringRequest = StringRequest(
@@ -45,8 +47,11 @@ class MainActivity : AppCompatActivity() {
             },
             Response.ErrorListener { textView.text = "That didn't work!" })
 
-// Add the request to the RequestQueue.
-        queue.add(stringRequest)
+// Add the request to the RequestQueue. (only when "simple" method)
+//        queue.add(stringRequest)
+
+        myVolley.addToRequestQueue(stringRequest)
+        //Reference: https://developer.android.com/training/volley/requestqueue
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -65,3 +70,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
