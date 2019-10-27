@@ -1,4 +1,4 @@
 # VolleyViewBind
-Get JSON by Volley 
-Deserialize into objects by GSON
-Populate view-bound data
+1. Get JSON by Volley 
+2. Deserialize into objects by GSON
+3. Populate view-bound data
