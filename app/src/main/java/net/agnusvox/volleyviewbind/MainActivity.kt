@@ -45,13 +45,14 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             Response.Listener<String> { response ->
+                val jsonStringSanitized = response.trim('(', ')')
                 // Display the first 500 characters of the response string.
-                //textView.text = "Response is: ${response.substring(0, 500)}"
+                //textView.text = "Response is: ${jsonStringSanitized.substring(0, 500)}"
 
                 //Reference: https://medium.com/@givemepass/gson-%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8-f367ee74e65d
                 val myInfoType = object : TypeToken<LiveInfo>(){}.type
-                val jsonObj = Gson().fromJson<LiveInfo>(response, myInfoType)
-                textView.text = jsonObj.total
+                val jsonObj = Gson().fromJson<LiveInfo>(jsonStringSanitized, myInfoType)
+                textView.text = jsonObj.schedulerTime
             },
             Response.ErrorListener { textView.text = "That didn't work!" })
 
