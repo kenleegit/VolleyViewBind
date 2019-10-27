@@ -9,13 +9,16 @@ import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
-import net.agnusvox.volleyviewbind.Constants
 
 class MainActivity : AppCompatActivity() {
     //TODO: Make myVolley in application context so it does not trigger when screen rotates.
     //See: https://developer.android.com/training/volley/requestqueue
     private val myVolley = VolleySingleton(this)
+    //GSON Reference: https://medium.com/@givemepass/gson-%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8-f367ee74e65d
+    val gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,12 @@ class MainActivity : AppCompatActivity() {
             Request.Method.GET, url,
             Response.Listener<String> { response ->
                 // Display the first 500 characters of the response string.
-                textView.text = "Response is: ${response.substring(0, 500)}"
+                //textView.text = "Response is: ${response.substring(0, 500)}"
+
+                //Reference: https://medium.com/@givemepass/gson-%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8-f367ee74e65d
+                val myInfoType = object : TypeToken<LiveInfo>(){}.type
+                val jsonObj = Gson().fromJson<LiveInfo>(response, myInfoType)
+                textView.text = jsonObj.total
             },
             Response.ErrorListener { textView.text = "That didn't work!" })
 
