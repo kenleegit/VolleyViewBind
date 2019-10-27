@@ -34,8 +34,12 @@ class MainActivity : AppCompatActivity() {
 
     //Reference: https://developer.android.com/training/volley/simple
     private fun getMyText() {
-        val textView = findViewById<TextView>(R.id.myText)
-// ...
+        val txtSchedulerTime = findViewById<TextView>(R.id.txtSchedulerTime)
+        val txtCurrentShowName = findViewById<TextView>(R.id.txtCurrentShowName)
+        val txtStartTime= findViewById<TextView>(R.id.txtStartTime)
+        val txtEndTime= findViewById<TextView>(R.id.txtEndTime)
+        val txtImagePath= findViewById<TextView>(R.id.txtImagePath)
+        // ...
 
 // Instantiate the RequestQueue. (only when "simple" method)
 //        val queue = Volley.newRequestQueue(this)
@@ -52,9 +56,13 @@ class MainActivity : AppCompatActivity() {
                 //Reference: https://medium.com/@givemepass/gson-%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8-f367ee74e65d
                 val myInfoType = object : TypeToken<LiveInfo>(){}.type
                 val jsonObj = Gson().fromJson<LiveInfo>(jsonStringSanitized, myInfoType)
-                textView.text = jsonObj.schedulerTime
+                txtSchedulerTime.text = jsonObj.schedulerTime
+                txtCurrentShowName.text = jsonObj.currentShow!![0].name
+                txtStartTime.text = jsonObj.currentShow!![0].start_timestamp
+                txtEndTime.text = jsonObj.currentShow!![0].end_timestamp
+                txtImagePath.text = jsonObj.currentShow!![0].image_path
             },
-            Response.ErrorListener { textView.text = "That didn't work!" })
+            Response.ErrorListener { txtSchedulerTime.text = "That didn't work!" })
 
 // Add the request to the RequestQueue. (only when "simple" method)
 //        queue.add(stringRequest)
