@@ -5,13 +5,13 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     //TODO: Make myVolley in application context so it does not trigger when screen rotates.
@@ -34,11 +34,13 @@ class MainActivity : AppCompatActivity() {
 
     //Reference: https://developer.android.com/training/volley/simple
     private fun getMyText() {
-        val txtSchedulerTime = findViewById<TextView>(R.id.txtSchedulerTime)
-        val txtCurrentShowName = findViewById<TextView>(R.id.txtCurrentShowName)
-        val txtStartTime= findViewById<TextView>(R.id.txtStartTime)
-        val txtEndTime= findViewById<TextView>(R.id.txtEndTime)
-        val txtImagePath= findViewById<TextView>(R.id.txtImagePath)
+        //No longer need findViewById since using view binding
+        //Reference: https://antonioleiva.com/kotlin-android-extensions/
+//        val txtSchedulerTime = findViewById<TextView>(R.id.txtSchedulerTime)
+//        val txtCurrentShowName = findViewById<TextView>(R.id.txtCurrentShowName)
+//        val txtStartTime= findViewById<TextView>(R.id.txtStartTime)
+//        val txtEndTime= findViewById<TextView>(R.id.txtEndTime)
+//        val txtImagePath= findViewById<TextView>(R.id.txtImagePath)
         // ...
 
 // Instantiate the RequestQueue. (only when "simple" method)
