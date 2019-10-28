@@ -12,6 +12,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
     //TODO: Make myVolley in application context so it does not trigger when screen rotates.
@@ -29,7 +31,10 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-        getMyText()
+        //Run periodically
+        Timer().schedule(0, 60000) {
+            getMyText()
+        }
     }
 
     //Reference: https://developer.android.com/training/volley/simple
