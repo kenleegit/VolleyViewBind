@@ -13,30 +13,35 @@
         android:id="@+id/txtSchedulerTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Scheduler Time" />
 
     <TextView
         android:id="@+id/txtCurrentShowName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Current Show Name" />
 
     <TextView
         android:id="@+id/txtStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Show Started" />
 
     <TextView
         android:id="@+id/txtEndTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Show Ends" />
 
     <TextView
         android:id="@+id/txtImagePath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Image Path" />
 
 </LinearLayout>
